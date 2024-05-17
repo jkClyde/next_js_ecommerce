@@ -11,7 +11,7 @@ import { client, urlFor } from "../lib/sanity";
 import Link from "next/link";
 
 async function getData() {
-  const query = "*[_type == 'sectionImage'][1]";
+  const query = "*[_type == 'sectionImage'][1]{...}";
 
   const data = await client.fetch(query);
 
@@ -37,19 +37,11 @@ const SpecialOffer = async () => {
       {/* RIGHT SIDE */}
       <div className="flex flex-1 flex-col">
         <h2 className="text-4xl font-palanquin font-bold">
-          <span className="text-main-secondary">Special </span>
-          Offer
+          <span className="text-primary">{data.colored_header} </span>
+          {data.header2}
         </h2>
-        <p className="mt-4 info-text">
-          Embark on a shopping journey that redefines your experience with
-          unbeatable deals. From premier selections to incredible savings, we
-          offer unparalleled value that sets us apart.
-        </p>
-        <p className="mt-6 info-text">
-          Navigate a realm of possibilities designed to fulfill your unique
-          desires, surpassing the loftiest expectations. Your journey with us is
-          nothing short of exceptional.
-        </p>
+        <p className="mt-4 info-text">{data.details1}</p>
+        <p className="mt-6 info-text">{data.details2}</p>
         {/* <div className="mt-11 flex flex-wrap gap-4">
           <Button label="Shop now" iconURL={arrowRight} />
           <Button
