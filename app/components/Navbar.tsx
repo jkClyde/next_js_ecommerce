@@ -12,7 +12,7 @@ const links = [
   { name: "Home", href: "/" },
   { name: "Shirts", href: "/Shirts" },
   { name: "Mugs", href: "/Mugs" },
-  { name: "Teens", href: "/Teens" },
+  // { name: "Teens", href: "/Teens" },
 ];
 
 export default function Navbar() {
