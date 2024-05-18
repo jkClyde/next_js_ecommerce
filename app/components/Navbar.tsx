@@ -5,12 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingBag } from "lucide-react";
 import { useShoppingCart } from "use-shopping-cart";
+import logo from "./icons/logo.jpg";
+import Image from "next/image";
 
 const links = [
   { name: "Home", href: "/" },
-  { name: "Men", href: "/Men" },
-  { name: "Women", href: "/Women" },
-  { name: "Teens", href: "/Teens" },
+  { name: "Shirts", href: "/Shirts" },
+  { name: "Mugs", href: "/Mugs" },
+  // { name: "Teens", href: "/Teens" },
 ];
 
 export default function Navbar() {
@@ -20,9 +22,17 @@ export default function Navbar() {
     <header className="mb-8 border-b">
       <div className="flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl">
         <Link href="/">
-          <h1 className="text-2xl md:text-4xl font-bold">
+          {/* <h1 className="text-2xl md:text-4xl font-bold">
             E<span className="text-primary">Commerce</span>
-          </h1>
+          </h1> */}
+
+          <Image
+            src={logo}
+            alt="Company Logo"
+            className="w-full h-full object-cover object-center lg:h-full lg:w-full"
+            width={50}
+            height={50}
+          />
         </Link>
 
         <nav className="hidden gap-12 lg:flex 2xl:ml-16">

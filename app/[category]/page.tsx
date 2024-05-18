@@ -3,15 +3,17 @@ import { simplifiedProduct } from "../interface";
 import { client } from "../lib/sanity";
 import Image from "next/image";
 
-async function getData(cateogry: string) {
-  const query = `*[_type == "product" && category->name == "${cateogry}"] {
-        _id,
-          "imageUrl": images[0].asset->url,
-          price,
-          name,
-          "slug": slug.current,
-          "categoryName": category->name
-      }`;
+async function getData(category: string) {
+  const categoryFilter =
+    category === "all" ? "" : `&& category->name == "${category}"`;
+  const query = `*[_type == "product" ${categoryFilter}] {
+    _id,
+    "imageUrl": images[0].asset->url,
+    price,
+    name,
+    "slug": slug.current,
+    "categoryName": category->name
+  }`;
 
   const data = await client.fetch(query);
 
@@ -40,13 +42,15 @@ export default async function CategoryPage({
           {data.map((product) => (
             <div key={product._id} className="group relative">
               <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
-                <Image
-                  src={product.imageUrl}
-                  alt="Product image"
-                  className="w-full h-full object-cover object-center lg:h-full lg:w-full"
-                  width={300}
-                  height={300}
-                />
+                <Link href={`/product/${product.slug}`}>
+                  <Image
+                    src={product.imageUrl}
+                    alt="Product image"
+                    className="w-full h-full object-cover object-center lg:h-full lg:w-full"
+                    width={300}
+                    height={300}
+                  />
+                </Link>
               </div>
 
               <div className="mt-4 flex justify-between">
