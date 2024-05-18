@@ -21,11 +21,9 @@ export default async function Hero() {
             Shop with Purpose
           </h1>
           <p className="max-w-md leading-relaxed text-gray-500 xl:text-lg">
-            {/* We sell only the most exclusive and high quality products for you.
-            We are the best so come and shop with us. */}
             Shop with purpose. Every purchase you make supports our mission to
-            spread love, kindness, and hope. Together, we're making a difference
-            in people's lives.
+            spread love, kindness, and hope. Together, we&apos;re making a
+            difference in people&apos;s lives.
           </p>
         </div>
 
