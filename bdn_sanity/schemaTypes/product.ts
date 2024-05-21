@@ -12,7 +12,7 @@ export default {
       name: 'images',
       type: 'array',
       title: 'Product Images',
-      of: [{type: 'image'}],
+      of: [{type: 'imageWithColor'}], // Use the new imageWithColor type
     },
     {
       name: 'description',

@@ -28,7 +28,7 @@ export default function AddToBag({
     description: description,
     price: price,
     currency: currency,
-    image: urlFor(image).url(),
+    image: urlFor(image.image).url(),
     price_id: price_id,
   };
   return (

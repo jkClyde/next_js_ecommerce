@@ -20,7 +20,7 @@ export default function ImageGallery({ images }: iAppProps) {
         {images.map((image: any, idx: any) => (
           <div key={idx} className="overflow-hidden rounded-lg bg-gray-100">
             <Image
-              src={urlFor(image).url()}
+              src={urlFor(image.image).url()}
               width={200}
               height={200}
               alt="photo"
@@ -33,16 +33,16 @@ export default function ImageGallery({ images }: iAppProps) {
 
       <div className="relative overflow-hidden rounded-lg bg-gray-100 lg:col-span-4">
         <Image
-          src={urlFor(bigImage).url()}
+          src={urlFor(bigImage.image).url()}
           alt="Photo"
           width={500}
           height={500}
           className="h-full w-full object-cover object-center"
         />
 
-        {/* <span className="absolute left-0 top-0 rounded-br-lg bg-red-500 px-3 py-1.5 text-sm uppercase tracking-wider text-white">
-          Sale
-        </span> */}
+        <span className="absolute left-0 top-0 rounded-br-lg bg-red-500 px-3 py-1.5 text-sm uppercase tracking-wider text-white">
+          {bigImage.color}
+        </span>
       </div>
     </div>
   );

@@ -5,13 +5,13 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 async function getData() {
-  const query = `*[_type == "product"][0...4] | order(_createdAt desc) {
+  const query = `*[_type == "product"][0...8] | order(_createdAt desc) {
         _id,
           price,
         name,
           "slug": slug.current,
           "categoryName": category->name,
-          "imageUrl": images[0].asset->url
+          "imageUrl": images[0].image.asset->url
       }`;
 
   const data = await client.fetch(query);
@@ -39,8 +39,13 @@ export default async function Newest() {
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {data.map((product) => (
-            <div key={product._id} className="group relative">
+          {data.map((product, index) => (
+            <div
+              key={product._id}
+              className={`group relative ${
+                index >= 4 ? "hidden sm:block" : ""
+              }`}
+            >
               <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
                 <Link href={`/product/${product.slug}`}>
                   <Image

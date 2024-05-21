@@ -8,7 +8,7 @@ async function getData(category: string) {
     category === "all" ? "" : `&& category->name == "${category}"`;
   const query = `*[_type == "product" ${categoryFilter}] {
     _id,
-    "imageUrl": images[0].asset->url,
+    "imageUrl": images[0].image.asset->url,
     price,
     name,
     "slug": slug.current,
