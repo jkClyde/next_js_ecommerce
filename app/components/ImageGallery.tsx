@@ -30,7 +30,7 @@ interface iAppProps {
 
 export default function ImageGallery({ images, data }: iAppProps) {
   const [bigImage, setBigImage] = useState(images[0]);
-  const [selectedSize, setSelectedSize] = useState("Choose size");
+  const [selectedSize, setSelectedSize] = useState("");
 
   const handleSmallImageClick = (image: any) => {
     setBigImage(image);
@@ -143,6 +143,7 @@ export default function ImageGallery({ images, data }: iAppProps) {
             key={data._id}
             price_id={data.price_id}
             variant={bigImage.color}
+            size={selectedSize}
           />
           <CheckoutNow
             currency="USD"
@@ -153,6 +154,7 @@ export default function ImageGallery({ images, data }: iAppProps) {
             key={data._id}
             price_id={data.price_id}
             variant={bigImage.color}
+            size={selectedSize}
           />
         </div>
       </div>
