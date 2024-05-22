@@ -18,6 +18,10 @@ export default {
           {title: 'Red', value: 'red'},
           {title: 'White', value: 'white'},
           {title: 'Blue', value: 'blue'},
+          {title: 'black', value: 'black'},
+          {title: 'green', value: 'green'},
+          {title: 'pink', value: 'pink'},
+          {title: 'yellow', value: 'yellow'},
           // Add more colors as needed
         ],
       },
