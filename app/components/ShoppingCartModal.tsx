@@ -66,6 +66,10 @@ export default function ShoppingCartModal() {
                           <p className="mt-1 text-sm text-gray-500 line-clamp-2">
                             {entry.description}
                           </p>
+                          <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+                            <span className="font-bold">Variant: </span>
+                            {entry.variant}
+                          </p>
                         </div>
 
                         <div className="flex flex-1 items-end justify-between text-sm">
