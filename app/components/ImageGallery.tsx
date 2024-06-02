@@ -31,16 +31,30 @@ interface iAppProps {
 export default function ImageGallery({ images, data }: iAppProps) {
   const [bigImage, setBigImage] = useState(images[0]);
   const [selectedSize, setSelectedSize] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const handleSmallImageClick = (image: any) => {
     setBigImage(image);
   };
+
+  const handleSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedSize(e.target.value);
+  };
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuantity(parseInt(e.target.value));
+    console.log(quantity);
+  };
+
   return (
     <>
       <div className="grid gap-4 lg:grid-cols-5">
         <div className="order-last flex gap-4 lg:order-none lg:flex-col">
-          {images.map((image: any, idx: any) => (
-            <div key={idx} className="overflow-hidden rounded-lg bg-gray-100">
+          {images.map((image: any, idx: number) => (
+            <div
+              key={`${image.image}-${idx}=${image.color}`}
+              className="overflow-hidden rounded-lg bg-gray-100"
+            >
               <Image
                 src={urlFor(image.image).url()}
                 width={200}
@@ -77,7 +91,19 @@ export default function ImageGallery({ images, data }: iAppProps) {
           </h2>
         </div>
 
-        {/* Render size for shirt categories */}
+        <div className="mb-4">
+          <div className="flex items-end gap-2">
+            <span className="text-xl font-bold text-gray-800 md:text-2xl">
+              ₱{data.price}
+            </span>
+            <span className="mb-0.5 text-red-500 line-through">
+              ₱{data.price + 30}
+            </span>
+          </div>
+
+          <span className="text-sm text-gray-500">Incl. Vat plus shipping</span>
+        </div>
+
         {data.categoryName === "Shirts" && (
           <div className="my-4">
             <label
@@ -89,7 +115,7 @@ export default function ImageGallery({ images, data }: iAppProps) {
             <select
               id="size"
               value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value)}
+              onChange={handleSizeChange}
               className="block w-full px-4 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             >
               <option value="" disabled hidden>
@@ -104,28 +130,21 @@ export default function ImageGallery({ images, data }: iAppProps) {
           </div>
         )}
 
-        {/* <div className="mb-6 flex items-center gap-3 md:mb-10">
-          <Button className="rounded-full gap-x-2">
-            <span className="text-sm">4.2</span>
-            <Star className="h-5 w-5" />
-          </Button>
-
-          <span className="text-sm text-gray-500 transition duration-100">
-            56 Ratings
-          </span>
-        </div> */}
-
         <div className="mb-4">
-          <div className="flex items-end gap-2">
-            <span className="text-xl font-bold text-gray-800 md:text-2xl">
-              ₱{data.price}
-            </span>
-            <span className="mb-0.5 text-red-500 line-through">
-              ₱{data.price + 30}
-            </span>
-          </div>
-
-          <span className="text-sm text-gray-500">Incl. Vat plus shipping</span>
+          <label
+            htmlFor="quantity"
+            className="block mb-2 text-sm font-bold text-gray-700"
+          >
+            Quantity:
+          </label>
+          <input
+            type="number"
+            id="quantity"
+            value={quantity}
+            onChange={handleQuantityChange}
+            min="1"
+            className="block w-full px-4 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          />
         </div>
 
         <div className="mb-6 flex items-center gap-2 text-gray-500">
@@ -144,6 +163,8 @@ export default function ImageGallery({ images, data }: iAppProps) {
             price_id={data.price_id}
             variant={bigImage.color}
             size={selectedSize}
+            quantity2={quantity}
+            category={data.categoryName}
           />
           <CheckoutNow
             currency="USD"
@@ -155,6 +176,8 @@ export default function ImageGallery({ images, data }: iAppProps) {
             price_id={data.price_id}
             variant={bigImage.color}
             size={selectedSize}
+            quantity2={quantity}
+            category={data.categoryName}
           />
         </div>
       </div>

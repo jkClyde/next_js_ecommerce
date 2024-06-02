@@ -19,9 +19,9 @@ const QualitySection = async () => {
     >
       {/* LEFT SIDE */}
       <div className="flex flex-1 flex-col">
-        <h2 className="font-palanquin capitalize text-4xl lg:max-w-lg font-bold text-primary mb-5">
+        <h2 className="font-palanquin capitalize text-4xl lg:max-w-lg font-bold text-white mb-5">
           {data.header}
-          <span className="text-main-secondary">{data.colored_header}</span>
+          <span className="text-main-text">{data.colored_header}</span>
           {data.header2}
         </h2>
 

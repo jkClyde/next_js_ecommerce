@@ -14,7 +14,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   subtext,
 }) => {
   return (
-    <div className="flex-1 sm:w-[22%] sm:min-w-[22%] w-full rounded-[20px] shadow-xl px-10 py-16">
+    <div className="flex-1 sm:w-[22%] sm:min-w-[22%] w-full rounded-[20px] shadow-2xl px-10 py-16">
       <div className="w-11 h-11 flex justify-center items-center bg-primary rounded-full">
         <Image src={urlFor(imgURL).url()} alt={label} width={24} height={24} />
       </div>

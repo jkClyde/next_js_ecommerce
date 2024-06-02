@@ -17,9 +17,14 @@ export default function ShoppingCartModal() {
     handleCartClick,
     cartDetails,
     removeItem,
-    totalPrice,
     redirectToCheckout,
   } = useShoppingCart();
+
+  // Calculate total price based on item quantity and price
+  const calculatedTotalPrice = Object.values(cartDetails ?? {}).reduce(
+    (total, entry) => total + entry.price * entry.quantity2,
+    0
+  );
 
   async function handleCheckoutClick(event: any) {
     event.preventDefault();
@@ -43,7 +48,7 @@ export default function ShoppingCartModal() {
           <div className="mt-8 flex-1 overflow-y-auto">
             <ul className="-my-6 divide-y divide-gray-200">
               {cartCount === 0 ? (
-                <h1 className="py-6">You dont have any items</h1>
+                <h1 className="py-6">You don't have any items</h1>
               ) : (
                 <>
                   {Object.values(cartDetails ?? {}).map((entry) => (
@@ -61,19 +66,25 @@ export default function ShoppingCartModal() {
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-900">
                             <h3>{entry.name}</h3>
-                            <p className="ml-4">₱{entry.price}</p>
+                            <p className="ml-4">
+                              ₱{entry.price * entry.quantity2}
+                            </p>
                           </div>
                           <p className="mt-1 text-sm text-gray-500 line-clamp-2">
                             {entry.description}
                           </p>
-                          <p className="mt-1 text-sm text-gray-500 line-clamp-2">
-                            <span className="font-bold">Variant: </span>
-                            {entry.variant}
-                          </p>
+                          {entry.variant && entry.size && (
+                            <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+                              <span className="font-bold">Variant: </span>
+                              {entry.variant}-{entry.size}
+                            </p>
+                          )}
                         </div>
 
                         <div className="flex flex-1 items-end justify-between text-sm">
-                          <p className="text-gray-500">QTY: {entry.quantity}</p>
+                          <p className="text-gray-500">
+                            QTY: {entry.quantity2}
+                          </p>
 
                           <div className="flex">
                             <button
@@ -96,7 +107,7 @@ export default function ShoppingCartModal() {
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <div className="flex justify-between text-base font-medium text-gray-900">
               <p>Subtotal:</p>
-              <p>₱{totalPrice}</p>
+              <p>₱{calculatedTotalPrice}</p>
             </div>
             <p className="mt-0.5 text-sm text-gray-500">
               Shipping and taxes are calculated at checkout.

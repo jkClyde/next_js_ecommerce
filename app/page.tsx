@@ -14,16 +14,16 @@ export default function Home() {
     <div className="bg-white">
       <Hero />
       <Newest />
-      <section className="padding-2 bg-main">
+      {/* <section className="padding-2 bg-primary">
         <QualitySection />
-      </section>
+      </section> */}
       <section className="padding">
         <Services />
       </section>
-      <section className="padding">
+      {/* <section className="padding">
         <SpecialOffer />
-      </section>
-      <section className=" bg-main padding-x padding-t pb-8">
+      </section> */}
+      <section className=" bg-primary padding-x padding-t pb-8">
         <Footer />
       </section>
     </div>

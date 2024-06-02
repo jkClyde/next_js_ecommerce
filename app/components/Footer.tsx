@@ -11,27 +11,27 @@ const Footer = () => {
     {
       title: "Products",
       links: [
-        { name: "Men", link: "/men" },
-        { name: "Women", link: "/women" },
-        { name: "Teens", link: "/teens" },
+        { name: "Shirts", link: "/Shirts" },
+        { name: "mugs", link: "/Mugs" },
+        // { name: "Teens", link: "/teens" },
       ],
     },
-    {
-      title: "Help",
-      links: [
-        { name: "About us", link: "/" },
-        { name: "FAQs", link: "/" },
-        { name: "How it works", link: "/" },
-        { name: "Privacy policy", link: "/" },
-        { name: "Payment policy", link: "/" },
-      ],
-    },
+    // {
+    //   title: "Help",
+    //   links: [
+    //     { name: "About us", link: "/" },
+    //     { name: "FAQs", link: "/" },
+    //     { name: "How it works", link: "/" },
+    //     { name: "Privacy policy", link: "/" },
+    //     { name: "Payment policy", link: "/" },
+    //   ],
+    // },
     {
       title: "Contact Us",
       links: [
         {
-          name: "customer@clydesports.com",
-          link: "mailto:customer@clydesports.com",
+          name: "bdn@gmail.com.com",
+          link: "mailto:customer@bdn.com",
         },
         { name: "09185031231", link: "tel:+92554862354" },
       ],
@@ -60,7 +60,7 @@ const Footer = () => {
           </a> */}
 
           <h4 className="font-montserrat text-2xl leading-normal font-medium mb-6 text-white">
-            ECommerce
+            BDN eCommerce
           </h4>
           <p className="mt-6 text-base leading-7 font-montserrat text-white-400 sm:max-w-sm">
             Gear up for your next adventure at our sports emporium. Find the
@@ -79,7 +79,7 @@ const Footer = () => {
           </div>
         </div>
         {/* REST OF THE ROW ============================================================================================== */}
-        <div className="flex flex-1 justify-between lg:gap-10 gap-20 flex-wrap">
+        <div className="flex flex-1 justify-around lg:gap-10 gap-20 flex-wrap">
           {footerLinks.map((section) => (
             <div key={section.title}>
               <h4 className="font-montserrat text-2xl leading-normal font-medium mb-6 text-white">

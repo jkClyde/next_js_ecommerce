@@ -12,6 +12,8 @@ export interface ProductCart {
   price_id: string;
   variant: string;
   size: string;
+  quantity2: number;
+  category: string;
 }
 
 interface ModalProps {
@@ -27,7 +29,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, message }) => {
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50">
       <div className="bg-white rounded-lg shadow-lg w-80">
         <div className="flex justify-between items-center bg-gray-200 py-2 px-4 rounded-t-lg">
-          {/* <h2 className="text-lg font-semibold text-gray-800">{message}</h2> */}
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-gray-800 focus:outline-none"
@@ -49,7 +50,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, message }) => {
           </button>
         </div>
         <div className="p-4">
-          <p className="text-gray-700">Please select a shirt size</p>
+          <p className="text-gray-700">{message}</p>
           <Button
             onClick={onClose}
             className="mt-4 w-full bg-primary hover:bg-primary text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -71,6 +72,8 @@ export default function AddToBag({
   price_id,
   variant,
   size,
+  quantity2,
+  category,
 }: ProductCart) {
   const { addItem, handleCartClick } = useShoppingCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,10 +86,12 @@ export default function AddToBag({
     image: urlFor(image.image).url(),
     price_id: price_id,
     variant: variant,
+    size: size,
+    quantity2: quantity2,
   };
 
   const handleAddToCart = () => {
-    if (size === "") {
+    if (category === "Shirts" && size === "") {
       setIsModalOpen(true);
     } else {
       addItem(product);
